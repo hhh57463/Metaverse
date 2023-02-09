@@ -9,12 +9,14 @@ public class Player : MonoBehaviour
     Animator anime;
 
     CinemachineVirtualCamera vCamera;
+    Camera mainCam;
 
     Vector3 moveDir;
     float moveSpeed;
     float jumpPower;
     float gravity;
-    float viewDir;
+    float viewDirX;
+    //float viewDirY;
     float rotSpeed;
 
     void Start()
@@ -22,12 +24,14 @@ public class Player : MonoBehaviour
         controller = GetComponent<CharacterController>();
         anime = GetComponent<Animator>();
         vCamera = FindObjectOfType<CinemachineVirtualCamera>();
-        Camera.main.transform.parent = transform;
+        mainCam = Camera.main;
+        mainCam.transform.parent = transform;
         moveDir = Vector3.zero;
         moveSpeed = 5.0f;
         jumpPower = 8.0f;
         gravity = 20.0f;
         rotSpeed = 3.0f;
+        //viewDirY = 0.0f;
         anime.SetBool("Idle", true);
         anime.SetBool("Run", false);
         anime.SetBool("Jump", false);
@@ -44,7 +48,16 @@ public class Player : MonoBehaviour
     float v => Input.GetAxis("Vertical");
     void Move()
     {
-        viewDir += Input.GetAxis("Mouse X") * rotSpeed;
+        viewDirX += Input.GetAxis("Mouse X") * rotSpeed;
+        //if (vCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y >= 0f && vCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y <= 3f)
+        //    viewDirY += Input.GetAxis("Mouse Y");
+        //else
+        //{
+        //    if (vCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y > 3.0f)
+        //        vCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y = 3.0f;
+        //    else if (vCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y < 0.0f)
+        //        vCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y = 0.0f;
+        //}
         if (controller.isGrounded)
         {
             anime.SetBool("Jump", false);
@@ -70,7 +83,8 @@ public class Player : MonoBehaviour
                 anime.SetBool("Run", true);
             }
         }
-        transform.rotation = Quaternion.Euler(0f, viewDir, 0f);
+        transform.rotation = Quaternion.Euler(0f, viewDirX, 0f);
+        //vCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y = viewDirY;
         moveDir.y -= gravity * Time.deltaTime;
         controller.Move(moveDir * Time.deltaTime);
     }
@@ -78,9 +92,9 @@ public class Player : MonoBehaviour
     bool view3;
     void SightChange()
     {
-        if(Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V))
         {
-            if(!view3)
+            if (!view3)
             {
                 vCamera.gameObject.SetActive(true);
                 view3 = true;
@@ -89,8 +103,8 @@ public class Player : MonoBehaviour
             {
                 vCamera.gameObject.SetActive(false);
                 view3 = false;
-                Camera.main.transform.localPosition = new Vector3(0f, 1.35f, 0f);
-                Camera.main.transform.rotation = Quaternion.Euler(0f, transform.rotation.y, 0f);
+                mainCam.transform.localPosition = new Vector3(0f, 1.35f, 0f);
+                mainCam.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
             }
         }
     }
