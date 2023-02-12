@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
                 else
                 {
                     GameMng.I.vCam.gameObject.SetActive(false);
-                    GameMng.I.mainCam.transform.localPosition = new Vector3(0f, 1.35f, 0f);
+                    GameMng.I.mainCam.transform.localPosition = new Vector3(0f, 1.35f, 0.1f);
                     GameMng.I.mainCam.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
                     view3 = false;
                 }

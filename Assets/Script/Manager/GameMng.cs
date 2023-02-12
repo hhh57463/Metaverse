@@ -20,6 +20,9 @@ public class GameMng : MonoBehaviour
     void Awake()
     {
         _instance = this;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public Camera mainCam;

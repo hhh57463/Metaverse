@@ -20,11 +20,15 @@ public class Mng : MonoBehaviour
     {
         _instance = this;
         DontDestroyOnLoad(gameObject);
+
+        Screen.SetResolution(1280, 720, true);
     }
 
     public string version = "1.0";
     public string nickName;
-    public string RoomName;
-    public bool MakingRoom;
-    public bool RandomRoom;
+    public string roomName;
+    public bool createRoom;
+    public bool randomRoom;
+    public int charNum = 0;
+    public bool fullScreenMode = true;
 }

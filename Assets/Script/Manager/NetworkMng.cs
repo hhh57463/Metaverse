@@ -9,12 +9,8 @@ public class NetworkMng : MonoBehaviourPunCallbacks
     void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;                            // 같은 룸의 유저들에게 자동으로 씬을 로딩
-        //PhotonNetwork.GameVersion = Mng.I.version;                              // 같은 버전의 유저끼리 접속 허용
-        //PhotonNetwork.NickName = Mng.I.nickName;                                // 유저 아이디 할당
-
-        PhotonNetwork.GameVersion = "1,0";
-        PhotonNetwork.NickName = "mindol";
-
+        PhotonNetwork.GameVersion = Mng.I.version;                              // 같은 버전의 유저끼리 접속 허용
+        PhotonNetwork.NickName = Mng.I.nickName;                                // 유저 아이디 할당
         Debug.Log(PhotonNetwork.SendRate);                                      // 포톤 서버와 통신 횟수 설정 (초당 30회)
         PhotonNetwork.ConnectUsingSettings();                                   // 서버 접속
     }
@@ -35,17 +31,17 @@ public class NetworkMng : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         Debug.Log($"PhotonNetwork.InLobby = {PhotonNetwork.InLobby}");
-        //if (Mng.I.MakingRoom)
-        //{
-        //    PhotonNetwork.CreateRoom(Mng.I.RoomName);                                   // 해당 이름으로 룸 생성
-        //}
-        //else
-        //{
-            //if (Mng.I.RandomRoom)
+        if (Mng.I.createRoom)
+        {
+            PhotonNetwork.CreateRoom(Mng.I.roomName);                                   // 해당 이름으로 룸 생성
+        }
+        else
+        {
+            if (Mng.I.randomRoom)
                 PhotonNetwork.JoinRandomRoom();                                         // 랜덤 매치메이킹 기능
-            //else
-            //    PhotonNetwork.JoinRoom(Mng.I.RoomName);                                 // 해당 이름을 가진 룸 입장
-        //}
+            else
+                PhotonNetwork.JoinRoom(Mng.I.roomName);                                 // 해당 이름을 가진 룸 입장
+        }
     }
 
     /**
@@ -93,7 +89,25 @@ public class NetworkMng : MonoBehaviourPunCallbacks
         Transform[] points = GameMng.I.spawnPoint.GetComponentsInChildren<Transform>();
         int idx = Random.Range(0, points.Length);
 
-        PhotonNetwork.Instantiate("Boy", points[idx].position, points[idx].rotation, 0);        // 캐릭터 생성
+        switch (Mng.I.charNum)
+        {
+            case 0:
+                PhotonNetwork.Instantiate("Boy", points[idx].position, points[idx].rotation, 0);
+                break;
+            case 1:
+                PhotonNetwork.Instantiate("Girl", points[idx].position, points[idx].rotation, 0);
+                break;
+            case 2:
+                PhotonNetwork.Instantiate("Hero", points[idx].position, points[idx].rotation, 0);
+                break;
+            case 3:
+                PhotonNetwork.Instantiate("Princess", points[idx].position, points[idx].rotation, 0);
+                break;
+            case 4:
+                PhotonNetwork.Instantiate("Soldier", points[idx].position, points[idx].rotation, 0);
+                break;
+        }
+
     }
 
     /**
