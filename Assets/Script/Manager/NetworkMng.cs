@@ -106,6 +106,9 @@ public class NetworkMng : MonoBehaviourPunCallbacks
             case 4:
                 PhotonNetwork.Instantiate("Soldier", points[idx].position, points[idx].rotation, 0);
                 break;
+            case 5:
+                PhotonNetwork.Instantiate("Skeleton", points[idx].position, points[idx].rotation, 0);
+                break;
         }
 
     }
