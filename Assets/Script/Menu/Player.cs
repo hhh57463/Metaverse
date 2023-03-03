@@ -45,6 +45,8 @@ public class Player : MonoBehaviour
         {
             Move();
             SightChange();
+            if ((!GameMng.I.isChatting && Input.GetKeyDown(KeyCode.R)) || transform.localPosition.y <= -30f)
+                Respawn();
         }
     }
 
@@ -135,6 +137,12 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+
+    void Respawn()
+    {
+        int idx = Random.Range(0, GameMng.I.points.Length);
+        transform.position = GameMng.I.points[idx].position;
     }
 
     void ViewSetting()

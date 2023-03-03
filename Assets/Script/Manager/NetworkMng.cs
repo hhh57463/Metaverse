@@ -84,33 +84,32 @@ public class NetworkMng : MonoBehaviourPunCallbacks
         {
             Debug.Log($"{player.Value.NickName}, {player.Value.ActorNumber}");          // 플레이어 이름, 플레이어 고유 번호 출력
         }
+        
+        int idx = Random.Range(0, GameMng.I.points.Length);
 
-        // 캐릭터 출현 정보를 배열에 저장
-        Transform[] points = GameMng.I.spawnPoint.GetComponentsInChildren<Transform>();
-        int idx = Random.Range(0, points.Length);
+        void Spawn(string name)
+        {
+            PhotonNetwork.Instantiate(name, GameMng.I.points[idx].position, GameMng.I.points[idx].rotation, 0);
+        }
 
         switch (Mng.I.charNum)
         {
             case 0:
-                PhotonNetwork.Instantiate("Boy", points[idx].position, points[idx].rotation, 0);
+                Spawn("Boy");
                 break;
             case 1:
-                PhotonNetwork.Instantiate("Girl", points[idx].position, points[idx].rotation, 0);
+                Spawn("Girl");
                 break;
             case 2:
-                PhotonNetwork.Instantiate("Hero", points[idx].position, points[idx].rotation, 0);
+                Spawn("Hero");
                 break;
             case 3:
-                PhotonNetwork.Instantiate("Princess", points[idx].position, points[idx].rotation, 0);
+                Spawn("Princess");
                 break;
             case 4:
-                PhotonNetwork.Instantiate("Soldier", points[idx].position, points[idx].rotation, 0);
-                break;
-            case 5:
-                PhotonNetwork.Instantiate("Skeleton", points[idx].position, points[idx].rotation, 0);
+                Spawn("Soldier");
                 break;
         }
-
     }
 
     /**

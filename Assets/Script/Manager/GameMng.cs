@@ -30,6 +30,12 @@ public class GameMng : MonoBehaviour
     public CinemachineFreeLook flCam;
 
     public Transform spawnPoint;
-
+    public Transform[] points;
     public bool isChatting = false;
+
+    void Start()
+    {
+        // 캐릭터 출현 정보를 배열에 저장
+        points = spawnPoint.GetComponentsInChildren<Transform>();
+    }
 }

@@ -55,9 +55,6 @@ public class MenuBtnMng : MonoBehaviour
             case 4:
                 selectFrame.localPosition = new Vector3(350f, 20f, 0f);
                 break;
-            case 5:
-                selectFrame.localPosition = new Vector3(525f, 20f, 0f);
-                break;
         }
     }
 
