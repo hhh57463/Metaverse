@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 712883903714671545, guid: 996d16ef0fa7547d3bdfea739982ba21, type: 3}
@@ -17,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7453087825137047235, guid: 996d16ef0fa7547d3bdfea739982ba21, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7453087825137047235, guid: 996d16ef0fa7547d3bdfea739982ba21, type: 3}
       propertyPath: m_LocalPosition.x
@@ -60,6 +61,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5851854025821250768, guid: 996d16ef0fa7547d3bdfea739982ba21, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5464660358407364346}
+    - targetCorrespondingSourceObject: {fileID: 5851854025821250768, guid: 996d16ef0fa7547d3bdfea739982ba21, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2189140532502253263}
+    - targetCorrespondingSourceObject: {fileID: 5851854025821250768, guid: 996d16ef0fa7547d3bdfea739982ba21, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2632220962138261349}
+    - targetCorrespondingSourceObject: {fileID: 5851854025821250768, guid: 996d16ef0fa7547d3bdfea739982ba21, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5728362516600374989}
+    - targetCorrespondingSourceObject: {fileID: 5851854025821250768, guid: 996d16ef0fa7547d3bdfea739982ba21, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5762948153413413770}
   m_SourcePrefab: {fileID: 100100000, guid: 996d16ef0fa7547d3bdfea739982ba21, type: 3}
 --- !u!1 &8123089182150993203 stripped
 GameObject:
@@ -74,9 +93,17 @@ CharacterController:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8123089182150993203}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
@@ -124,16 +151,16 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Idle
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Run
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Jump
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 0
 --- !u!114 &5728362516600374989
 MonoBehaviour:
